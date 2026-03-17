@@ -1,0 +1,141 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin:0;
+    padding:0;
+    background: linear-gradient(135deg, #e2f0d9, #f0fff4);
+}
+
+header {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 40px;
+    background:white;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.logo {
+    font-size:22px;
+    font-weight:bold;
+    color:#2a5d34;
+}
+
+.homebtn {
+    text-decoration:none;
+    background:#4fa3ff;
+    color:white;
+    padding:8px 16px;
+    border-radius:20px;
+    font-weight:bold;
+}
+
+.background-layer {
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    padding-top:50px;
+}
+
+.floating-leaf {
+    position:absolute;
+    width:80px;
+    opacity:0.6;
+    transform:rotate(15deg);
+}
+
+.leaf1 { top: 20px; left: 30px; }
+.leaf2 { bottom: 50px; right: 40px; }
+
+.central-overlay {
+    background: rgba(50, 150, 80, 0.7);
+    backdrop-filter: blur(15px);
+    border-radius:30px;
+    padding:40px;
+    width:90%;
+    max-width:900px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    box-shadow:0 8px 30px rgba(0,0,0,0.1);
+}
+
+.central-overlay h1 {
+    font-size:28px;
+    color:white;
+    margin-bottom:30px;
+}
+
+.central-overlay .number {
+    font-size:60px;
+    font-weight:bold;
+    color:#f9d56e;
+    margin-right:15px;
+}
+
+.category-selector {
+    margin-bottom:30px;
+    color:white;
+}
+
+.category-selector label {
+    font-weight:bold;
+    margin-right:10px;
+}
+
+.category-selector select {
+    padding:8px 12px;
+    border-radius:12px;
+    border:none;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.tips-grid {
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    width:100%;
+}
+
+.tip-card {
+    display:flex;
+    align-items:center;
+    gap:20px;
+    background:white;
+    border-radius:25px;
+    padding:20px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.tip-card:hover {
+    transform:translateY(-5px);
+}
+
+.tip-number {
+    font-size:24px;
+    font-weight:bold;
+    background:#2a5d34;
+    color:white;
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.tip-text {
+    font-size:16px;
+    color:#333;
+    flex:1;
+}
+
+/* Responsive */
+@media(max-width:800px){
+    .central-overlay { padding:20px; }
+    .tip-card { flex-direction:column; text-align:center; }
+    .tip-number { margin-bottom:10px; }
+}

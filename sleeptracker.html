@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sleep Tracker - CALMSPACE</title>
+<link rel="stylesheet" href="sleeptracker.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">CALMSPACE</div>
+    <a href="Homepage.html">
+        <button class="back">Back to Homepage</button>
+    </a>
+</header>
+
+<div class="container">
+
+    <h1>Sleep Tracker</h1>
+    <p>Record how many hours you planned to sleep and how many hours you actually slept.</p>
+
+    <div class="input-box">
+        <label>Planned Sleep Hours</label>
+        <input type="number" id="plannedSleep" placeholder="Example: 8">
+
+        <label>Actual Sleep Hours</label>
+        <input type="number" id="actualSleep" placeholder="Example: 7">
+
+        <button class="add-btn" onclick="addSleep()">Add Entry</button>
+        <button class="add-btn" onclick="resetSleep()" style="background:#ef4444;">Reset All</button>
+    </div>
+
+    <div class="table-box">
+        <h2>Sleep Records</h2>
+        <table id="sleepTable">
+            <tr>
+                <th>Planned Hours</th>
+                <th>Actual Hours</th>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+<script>
+// ====== Persistent Sleep Tracker ======
+
+// Load saved sleep entries on page load
+window.onload = function() {
+    displaySleepEntries();
+};
+
+// Add sleep entry
+function addSleep() {
+    let planned = document.getElementById("plannedSleep").value;
+    let actual = document.getElementById("actualSleep").value;
+
+    if(planned === "" || actual === "") {
+        alert("Please enter both values");
+        return;
+    }
+
+    // Get saved entries or empty array
+    let sleepEntries = JSON.parse(localStorage.getItem("sleepEntries")) || [];
+
+    // Add new entry
+    sleepEntries.push({planned: planned, actual: actual});
+    localStorage.setItem("sleepEntries", JSON.stringify(sleepEntries));
+
+    // Update table
+    displaySleepEntries();
+
+    // Clear inputs
+    document.getElementById("plannedSleep").value = "";
+    document.getElementById("actualSleep").value = "";
+}
+
+// Display entries in table
+function displaySleepEntries() {
+    let sleepEntries = JSON.parse(localStorage.getItem("sleepEntries")) || [];
+    let table = document.getElementById("sleepTable");
+
+    // Remove old rows except header
+    table.innerHTML = `<tr>
+        <th>Planned Hours</th>
+        <th>Actual Hours</th>
+    </tr>`;
+
+    // Add all entries
+    sleepEntries.forEach(entry => {
+        let row = table.insertRow();
+        let cell1 = row.insertCell(0);
+        let cell2 = row.insertCell(1);
+        cell1.innerHTML = entry.planned;
+        cell2.innerHTML = entry.actual;
+    });
+}
+
+// Reset all entries
+function resetSleep() {
+    if(confirm("Are you sure you want to delete all sleep records?")) {
+        localStorage.removeItem("sleepEntries");
+        displaySleepEntries();
+    }
+}
+</script>
+
+</body>
+</html>

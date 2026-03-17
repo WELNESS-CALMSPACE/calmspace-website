@@ -1,0 +1,168 @@
+body{
+    margin:0;
+    font-family: "Trebuchet MS", "Segoe UI", Verdana, sans-serif;
+    background:#0f0f0f;
+    color:white;
+}
+
+header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:20px 40px;
+    background:#0f0f0f;
+}
+
+.logo{
+    font-size:22px;
+    font-weight:700;
+    letter-spacing:1px;
+    color:white;
+}
+
+nav ul{
+    display:flex;
+    gap:20px;
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+nav li{
+    font-size:14px;
+    color:#d9d9d9;
+    cursor:pointer;
+    font-weight:500;
+}
+
+nav li:hover{
+    color:white;
+}
+
+.user-controls{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.user-controls input{
+    padding:6px 12px;
+    border-radius:20px;
+    border:none;
+    background:#1e1e1e;
+    color:white;
+    font-family: "Trebuchet MS", "Segoe UI", Verdana, sans-serif;
+}
+
+.user-controls img{
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    border:2px solid #3cff88;
+    object-fit:cover;
+}
+
+.dashboard{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:25px;
+    padding:40px;
+}
+
+.hero-card{
+    position:relative;
+    background-image: url("https://i.pinimg.com/736x/5b/39/e7/5b39e7c3207442c2d6b035155cbf686c.jpg");
+    background-size: cover;
+    background-position: center;
+    border-radius:30px;
+    min-height:420px;
+    padding:30px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+}
+
+.hero-card::after{
+    content:"";
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    height:50%;
+    background:linear-gradient(transparent, rgba(0,0,0,0.8));
+    border-radius:30px;
+}
+
+.hero-card h2{
+    position:relative;
+    font-size:30px;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.hero-card p{
+    position:relative;
+    max-width:400px;
+    color:#e3e3e3;
+    font-size:15px;
+    line-height:1.5;
+}
+
+.sidebar-cards{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.card{
+    background:#1b1b1b;
+    border-radius:20px;
+    padding:15px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+}
+
+.card img{
+    width:50px;
+    height:50px;
+    object-fit:cover;
+    margin-bottom:10px;
+    border-radius:10px;
+}
+
+.card h3{
+    margin-top:0;
+    font-size:16px;
+    font-weight:600;
+}
+
+.card p{
+    font-size:13px;
+    color:#cfcfcf;
+    line-height:1.4;
+}
+
+.card button{
+    margin-top:10px;
+    padding:6px 12px;
+    border-radius:20px;
+    border:none;
+    background:white;
+    color:black;
+    font-size:12px;
+    font-weight:600;
+    cursor:pointer;
+    font-family: "Trebuchet MS", "Segoe UI", Verdana, sans-serif;
+}
+
+.card button:hover{
+    background:#e6e6e6;
+}
+
+@media (max-width:1000px){
+    .dashboard{
+        grid-template-columns:1fr;
+    }
+}

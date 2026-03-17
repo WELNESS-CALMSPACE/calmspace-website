@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CALMSPACE - Well-being Tips</title>
+<link rel="stylesheet" href="wellbeing.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">CALMSPACE</div>
+    <a href="Homepage.html" class="homebtn">Return Home</a>
+</header>
+
+<section class="background-layer">
+    
+    <div class="central-overlay">
+        <h1><span class="number">5</span> TIPS FOR WELL-BEING</h1>
+        
+        <div class="category-selector">
+            <label for="category">Choose Category:</label>
+            <select id="category">
+                <option value="physical">Physical Health</option>
+                <option value="mental">Mental Health</option>
+                <option value="productivity">Productivity</option>
+                <option value="social">Social & Community</option>
+                <option value="nutrition">Nutrition</option>
+            </select>
+        </div>
+
+        <div class="tips-grid">
+
+            <!-- Physical Health Tips -->
+            <div class="tip-card category physical">
+                <div class="tip-number">01</div>
+                <div class="tip-text">Move Your Body: Walk, stretch, or exercise daily.</div>
+            </div>
+            <div class="tip-card category physical">
+                <div class="tip-number">02</div>
+                <div class="tip-text">Stay Hydrated: Drink 6–8 glasses of water daily.</div>
+            </div>
+            <div class="tip-card category physical">
+                <div class="tip-number">03</div>
+                <div class="tip-text">Prioritize Sleep: Keep a regular sleep schedule.</div>
+            </div>
+            <div class="tip-card category physical">
+                <div class="tip-number">04</div>
+                <div class="tip-text">Stretch Daily: Reduce stiffness and improve posture.</div>
+            </div>
+            <div class="tip-card category physical">
+                <div class="tip-number">05</div>
+                <div class="tip-text">Take Breaks: Rest to avoid overtraining or fatigue.</div>
+            </div>
+
+            <!-- Mental Health Tips -->
+            <div class="tip-card category mental">
+                <div class="tip-number">01</div>
+                <div class="tip-text">Meditate: 5 to 10 minutes daily to reduce stress.</div>
+            </div>
+            <div class="tip-card category mental">
+                <div class="tip-number">02</div>
+                <div class="tip-text">Practice Gratitude: Write down 3 things you're thankful for.</div>
+            </div>
+            <div class="tip-card category mental">
+                <div class="tip-number">03</div>
+                <div class="tip-text">Breathe Deeply: Use mindful breathing to calm your mind.</div>
+            </div>
+            <div class="tip-card category mental">
+                <div class="tip-number">04</div>
+                <div class="tip-text">Journal: Reflect on thoughts and emotions daily.</div>
+            </div>
+            <div class="tip-card category mental">
+                <div class="tip-number">05</div>
+                <div class="tip-text">Limit Screen Time: Reduce stress from constant notifications.</div>
+            </div>
+
+<!-- Productivity Tips -->
+<div class="tip-card category productivity">
+    <div class="tip-number">01</div>
+    <div class="tip-text">Plan Your Day: Use a to-do list to structure tasks efficiently.</div>
+</div>
+<div class="tip-card category productivity">
+    <div class="tip-number">02</div>
+    <div class="tip-text">Pomodoro Technique: Work in focused 25-minute intervals with breaks.</div>
+</div>
+<div class="tip-card category productivity">
+    <div class="tip-number">03</div>
+    <div class="tip-text">Prioritize Tasks: Tackle high-impact tasks first to maximize productivity.</div>
+</div>
+<div class="tip-card category productivity">
+    <div class="tip-number">04</div>
+    <div class="tip-text">Limit Multitasking: Focus on one task at a time to reduce errors.</div>
+</div>
+<div class="tip-card category productivity">
+    <div class="tip-number">05</div>
+    <div class="tip-text">Reflect Daily: Review accomplishments and plan improvements for tomorrow.</div>
+</div>
+
+<!-- Social & Community Tips -->
+<div class="tip-card category social">
+    <div class="tip-number">01</div>
+    <div class="tip-text">Connect Regularly: Reach out to friends and family weekly.</div>
+</div>
+<div class="tip-card category social">
+    <div class="tip-number">02</div>
+    <div class="tip-text">Volunteer: Offer your time or skills to help others in your community.</div>
+</div>
+<div class="tip-card category social">
+    <div class="tip-number">03</div>
+    <div class="tip-text">Join Clubs: Participate in clubs or groups to meet like-minded people.</div>
+</div>
+<div class="tip-card category social">
+    <div class="tip-number">04</div>
+    <div class="tip-text">Be Present: Give full attention during conversations and interactions.</div>
+</div>
+<div class="tip-card category social">
+    <div class="tip-number">05</div>
+    <div class="tip-text">Express Appreciation: Compliment and thank people often to strengthen bonds.</div>
+</div>
+
+<!-- Nutrition Tips -->
+<div class="tip-card category nutrition">
+    <div class="tip-number">01</div>
+    <div class="tip-text">Eat Whole Foods: Include vegetables, fruits, and grains in meals.</div>
+</div>
+<div class="tip-card category nutrition">
+    <div class="tip-number">02</div>
+    <div class="tip-text">Balanced Diet: Ensure each meal has protein, carbs, and healthy fats.</div>
+</div>
+<div class="tip-card category nutrition">
+    <div class="tip-number">03</div>
+    <div class="tip-text">Avoid Processed Sugar: Limit sugary drinks and snacks to improve energy.</div>
+</div>
+<div class="tip-card category nutrition">
+    <div class="tip-number">04</div>
+    <div class="tip-text">Snack Smart: Choose nuts, fruits, or yogurt instead of junk food.</div>
+</div>
+<div class="tip-card category nutrition">
+    <div class="tip-number">05</div>
+    <div class="tip-text">Eat Mindfully: Chew slowly and focus on your meal to improve digestion.</div>
+</div>
+
+            
+        </div>
+    </div>
+</section>
+
+<script>
+// Simple JS to show only selected category tips
+const select = document.getElementById('category');
+const tips = document.querySelectorAll('.tip-card');
+
+function filterTips() {
+    const category = select.value;
+    tips.forEach(tip => {
+        tip.style.display = tip.classList.contains(category) ? 'flex' : 'none';
+    });
+}
+
+// Initialize
+filterTips();
+select.addEventListener('change', filterTips);
+</script>
+
+</body>
+</html>

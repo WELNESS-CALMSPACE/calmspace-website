@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physical Activity Tracker - CALMSPACE</title>
+<link rel="stylesheet" href="activitytracker.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Physical Activity Tracker</h1>
+    <a href="Homepage.html" class="homebtn">Back to Homepage</a>
+</header>
+
+<div class="container">
+
+    <h2>Sports Activity</h2>
+    <div class="input-box">
+        <input type="text" id="sportName" placeholder="Sport (Football, Swimming)">
+        <input type="number" id="sportTime" placeholder="Minutes Played">
+        <button onclick="addSport()">Add Sport</button>
+        <button onclick="resetSports()" style="background:#ef4444;">Reset All</button>
+    </div>
+    <table id="sportTable">
+        <tr>
+            <th>Sport</th>
+            <th>Minutes Played</th>
+        </tr>
+    </table>
+
+    <h2>Exercise Tracker</h2>
+    <div class="input-box">
+        <input type="text" id="exerciseName" placeholder="Exercise (Push-ups, Sit-ups)">
+        <input type="number" id="exerciseAmount" placeholder="Amount">
+        <button onclick="addExercise()">Add Exercise</button>
+        <button onclick="resetExercises()" style="background:#ef4444;">Reset All</button>
+    </div>
+    <table id="exerciseTable">
+        <tr>
+            <th>Exercise</th>
+            <th>Amount</th>
+        </tr>
+    </table>
+
+    <h2>Step Tracker</h2>
+    <div class="input-box">
+        <input type="number" id="steps" placeholder="Steps Walked">
+        <button onclick="addSteps()">Add Steps</button>
+        <button onclick="resetSteps()" style="background:#ef4444;">Reset All</button>
+    </div>
+    <table id="stepTable">
+        <tr>
+            <th>Steps</th>
+            <th>Calories Burned</th>
+        </tr>
+    </table>
+
+</div>
+
+<script>
+// ====== Persistent Activity Tracker ======
+
+// Load saved entries on page load
+window.onload = function() {
+    displaySports();
+    displayExercises();
+    displaySteps();
+};
+
+// ----- Sports -----
+function addSport() {
+    let sport = document.getElementById("sportName").value;
+    let time = document.getElementById("sportTime").value;
+
+    if(sport === "" || time === "") {
+        alert("Please enter sport and time");
+        return;
+    }
+
+    let sports = JSON.parse(localStorage.getItem("sports")) || [];
+    sports.push({sport: sport, time: time});
+    localStorage.setItem("sports", JSON.stringify(sports));
+
+    displaySports();
+    document.getElementById("sportName").value = "";
+    document.getElementById("sportTime").value = "";
+}
+
+function displaySports() {
+    let sports = JSON.parse(localStorage.getItem("sports")) || [];
+    let table = document.getElementById("sportTable");
+    table.innerHTML = `<tr><th>Sport</th><th>Minutes Played</th></tr>`;
+    sports.forEach(entry => {
+        let row = table.insertRow();
+        row.insertCell(0).innerHTML = entry.sport;
+        row.insertCell(1).innerHTML = entry.time;
+    });
+}
+
+function resetSports() {
+    if(confirm("Are you sure you want to delete all sports entries?")) {
+        localStorage.removeItem("sports");
+        displaySports();
+    }
+}
+
+// ----- Exercises -----
+function addExercise() {
+    let exercise = document.getElementById("exerciseName").value;
+    let amount = document.getElementById("exerciseAmount").value;
+
+    if(exercise === "" || amount === "") {
+        alert("Please enter exercise and amount");
+        return;
+    }
+
+    let exercises = JSON.parse(localStorage.getItem("exercises")) || [];
+    exercises.push({exercise: exercise, amount: amount});
+    localStorage.setItem("exercises", JSON.stringify(exercises));
+
+    displayExercises();
+    document.getElementById("exerciseName").value = "";
+    document.getElementById("exerciseAmount").value = "";
+}
+
+function displayExercises() {
+    let exercises = JSON.parse(localStorage.getItem("exercises")) || [];
+    let table = document.getElementById("exerciseTable");
+    table.innerHTML = `<tr><th>Exercise</th><th>Amount</th></tr>`;
+    exercises.forEach(entry => {
+        let row = table.insertRow();
+        row.insertCell(0).innerHTML = entry.exercise;
+        row.insertCell(1).innerHTML = entry.amount;
+    });
+}
+
+function resetExercises() {
+    if(confirm("Are you sure you want to delete all exercise entries?")) {
+        localStorage.removeItem("exercises");
+        displayExercises();
+    }
+}
+
+// ----- Steps -----
+function addSteps() {
+    let steps = document.getElementById("steps").value;
+
+    if(steps === "") {
+        alert("Enter steps");
+        return;
+    }
+
+    let calories = (steps * 0.04).toFixed(2);
+    let stepEntries = JSON.parse(localStorage.getItem("steps")) || [];
+    stepEntries.push({steps: steps, calories: calories});
+    localStorage.setItem("steps", JSON.stringify(stepEntries));
+
+    displaySteps();
+    document.getElementById("steps").value = "";
+}
+
+function displaySteps() {
+    let stepEntries = JSON.parse(localStorage.getItem("steps")) || [];
+    let table = document.getElementById("stepTable");
+    table.innerHTML = `<tr><th>Steps</th><th>Calories Burned</th></tr>`;
+    stepEntries.forEach(entry => {
+        let row = table.insertRow();
+        row.insertCell(0).innerHTML = entry.steps;
+        row.insertCell(1).innerHTML = entry.calories;
+    });
+}
+
+function resetSteps() {
+    if(confirm("Are you sure you want to delete all step entries?")) {
+        localStorage.removeItem("steps");
+        displaySteps();
+    }
+}
+</script>
+
+</body>
+</html>

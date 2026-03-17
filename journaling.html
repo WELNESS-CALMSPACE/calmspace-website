@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CALMSPACE Journaling</title>
+<link rel="stylesheet" href="journaling.css">
+</head>
+
+<body>
+
+<header>
+<div class="logo">CALMSPACE</div>
+<a href="Homepage.html" class="homebtn">Home</a>
+</header>
+
+<div class="container">
+
+<h1>Journaling</h1>
+
+<div class="section">
+
+<div class="section-header" onclick="toggleSection('journalSection')">
+<h2>Journal Entries</h2>
+<span>▼</span>
+</div>
+
+<div class="section-content" id="journalSection">
+
+<input type="text" id="journalTitle" placeholder="Entry Title">
+
+<textarea id="journalText" placeholder="Write your journal entry..."></textarea>
+
+<button onclick="addJournal()">Save Entry</button>
+
+<div id="journalEntries"></div>
+
+</div>
+</div>
+
+
+<div class="section">
+
+<div class="section-header" onclick="toggleSection('goalSection')">
+<h2>Goals</h2>
+<span>▼</span>
+</div>
+
+<div class="section-content" id="goalSection">
+
+<input type="text" id="goalInput" placeholder="Enter goal">
+
+<input type="date" id="goalDeadline">
+
+<button onclick="addGoal()">Add Goal</button>
+
+<ul id="goalList"></ul>
+
+</div>
+</div>
+
+
+<div class="section">
+
+<div class="section-header" onclick="toggleSection('todoSection')">
+<h2>To-Do List</h2>
+<span>▼</span>
+</div>
+
+<div class="section-content" id="todoSection">
+
+<input type="text" id="todoInput" placeholder="Enter task">
+
+<input type="date" id="todoDate">
+
+<input type="time" id="todoTime">
+
+<button onclick="addTask()">Add Task</button>
+
+<ul id="todoList"></ul>
+
+</div>
+</div>
+
+</div>
+
+
+<script>
+
+function toggleSection(id){
+let section = document.getElementById(id)
+if(section.style.display === "none"){
+section.style.display = "block"
+}else{
+section.style.display = "none"
+}
+}
+
+let journals = JSON.parse(localStorage.getItem("journals")) || []
+let goals = JSON.parse(localStorage.getItem("goals")) || []
+let todos = JSON.parse(localStorage.getItem("todos")) || []
+
+function displayJournals(){
+let container = document.getElementById("journalEntries")
+container.innerHTML = ""
+
+journals.forEach((j,index)=>{
+
+let div = document.createElement("div")
+
+let title = document.createElement("h3")
+title.innerText = j.title
+
+let text = document.createElement("p")
+text.innerText = j.text
+text.style.display = "none"
+
+title.onclick = function(){
+if(text.style.display === "none"){
+text.style.display = "block"
+}else{
+text.style.display = "none"
+}
+}
+
+let deleteBtn = document.createElement("button")
+deleteBtn.innerText = "Delete"
+
+deleteBtn.onclick = function(){
+journals.splice(index,1)
+localStorage.setItem("journals",JSON.stringify(journals))
+displayJournals()
+}
+
+div.appendChild(title)
+div.appendChild(text)
+div.appendChild(deleteBtn)
+
+container.appendChild(div)
+
+})
+}
+
+function addJournal(){
+
+let title = document.getElementById("journalTitle").value
+let text = document.getElementById("journalText").value
+
+if(title=="" || text==""){
+alert("Fill everything")
+return
+}
+
+journals.push({title:title,text:text})
+
+localStorage.setItem("journals",JSON.stringify(journals))
+
+document.getElementById("journalTitle").value=""
+document.getElementById("journalText").value=""
+
+displayJournals()
+}
+
+function displayGoals(){
+
+let list = document.getElementById("goalList")
+list.innerHTML = ""
+
+goals.forEach((g,index)=>{
+
+let li = document.createElement("li")
+
+li.innerHTML = g.text + " (Deadline: " + g.deadline + ")"
+
+let deleteBtn = document.createElement("button")
+deleteBtn.innerText = "Delete"
+
+deleteBtn.onclick = function(){
+
+goals.splice(index,1)
+
+localStorage.setItem("goals",JSON.stringify(goals))
+
+displayGoals()
+
+}
+
+li.appendChild(deleteBtn)
+
+list.appendChild(li)
+
+})
+}
+
+function addGoal(){
+
+let text = document.getElementById("goalInput").value
+let deadline = document.getElementById("goalDeadline").value
+
+if(text=="" || deadline=="") return
+
+goals.push({text:text,deadline:deadline})
+
+localStorage.setItem("goals",JSON.stringify(goals))
+
+document.getElementById("goalInput").value=""
+document.getElementById("goalDeadline").value=""
+
+displayGoals()
+
+}
+
+function displayTodos(){
+
+let list = document.getElementById("todoList")
+list.innerHTML = ""
+
+todos.forEach((t,index)=>{
+
+let li = document.createElement("li")
+
+li.innerHTML = t.text + " (Due: " + t.date + " " + t.time + ")"
+
+let deleteBtn = document.createElement("button")
+deleteBtn.innerText = "Delete"
+
+deleteBtn.onclick = function(){
+
+todos.splice(index,1)
+
+localStorage.setItem("todos",JSON.stringify(todos))
+
+displayTodos()
+
+}
+
+li.appendChild(deleteBtn)
+
+list.appendChild(li)
+
+})
+}
+
+function addTask(){
+
+let text = document.getElementById("todoInput").value
+let date = document.getElementById("todoDate").value
+let time = document.getElementById("todoTime").value
+
+if(text=="" || date=="") return
+
+todos.push({text:text,date:date,time:time})
+
+localStorage.setItem("todos",JSON.stringify(todos))
+
+document.getElementById("todoInput").value=""
+document.getElementById("todoDate").value=""
+document.getElementById("todoTime").value=""
+
+displayTodos()
+
+}
+
+displayJournals()
+displayGoals()
+displayTodos()
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+body{
+margin:0;
+font-family:"Trebuchet MS","Segoe UI",Verdana,sans-serif;
+background:linear-gradient(135deg,#d7ecff,#ffe8d6);
+color:#333;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 60px;
+background:white;
+}
+
+.logo{
+font-size:22px;
+font-weight:700;
+}
+
+.back{
+padding:8px 18px;
+border-radius:20px;
+border:none;
+background:#4fa3ff;
+color:white;
+cursor:pointer;
+}
+
+.container{
+padding:50px 80px;
+}
+
+.input-box{
+background:white;
+padding:30px;
+border-radius:20px;
+margin-top:30px;
+display:flex;
+flex-direction:column;
+gap:10px;
+max-width:400px;
+}
+
+input{
+padding:10px;
+border-radius:10px;
+border:1px solid #ccc;
+font-family:"Trebuchet MS","Segoe UI",Verdana,sans-serif;
+}
+
+.add-btn{
+margin-top:10px;
+padding:10px;
+border:none;
+background:#ff9c66;
+color:white;
+border-radius:20px;
+cursor:pointer;
+font-family:"Trebuchet MS","Segoe UI",Verdana,sans-serif;
+}
+
+.table-box{
+background:white;
+padding:30px;
+border-radius:20px;
+margin-top:40px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+th{
+background:#4fa3ff;
+color:white;
+padding:12px;
+font-weight:600;
+}
+
+td{
+padding:12px;
+border-bottom:1px solid #ddd;
+text-align:center;
+}
